@@ -202,7 +202,7 @@ const YD = new YoutubeMp3Downloader({...});
 
 YD.on("progress", function(progress) {
   if (!bar) {
-    bar = new ProgressBar(`${title} [:bar] :rate/bps :percent :etas`, {
+    bar = new ProgressBar(`[:bar] :rate/bps :percent :etas`, {
       complete: '=',
       incomplete: ' ',
       width: 30,
