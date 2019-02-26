@@ -185,3 +185,33 @@ dl.getMP3({videoId: "Vhd6Kc4TZls", name: "Cold Funk - Funkorama.mp3"}, function(
     }
 });
 ```
+
+### Progressbar
+
+This example is using https://github.com/visionmedia/node-progress:
+
+```bash
+$ npm install progress --save-dev
+```
+
+```js
+const ProgressBar = require('progress');
+
+let bar;
+const YD = new YoutubeMp3Downloader({...});
+
+YD.on("progress", function(progress) {
+  if (!bar) {
+    bar = new ProgressBar(`${title} [:bar] :rate/bps :percent :etas`, {
+      complete: '=',
+      incomplete: ' ',
+      width: 30,
+      total: progress.progress.length
+    });
+  } else {
+    bar.tick(progress.progress.delta);
+  }
+});
+
+YD.download('xxx');
+```
